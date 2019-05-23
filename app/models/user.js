@@ -13,7 +13,7 @@ var user = new Schema({
         minlength : 5
     }
 },{
-    collection : 'users'
+    collection : 'Users'
 })
 
 module.exports = mongoose.model('User', user);

@@ -26,7 +26,7 @@ var lunch = new Schema({
         type : String
     }], 
 },{
-    collection : 'lunches'
+    collection : 'Lunches'
 })
 
 module.exports = mongoose.model('Lunch', lunch);

@@ -20,7 +20,7 @@ const Lunches = require('./app/models/lunch');
 // Connect to mongoDB
 mongoose.connect(config.DB)
 .then(() => {
-    console.log('Connected to the server');
+    console.log('Connected to Server');
 })
 .catch((err) => console.log(err));
 

@@ -18,7 +18,7 @@ userRouter.route('/')
     .catch((err) => next(err));
 })
 .post((req, res, next) => {
-    user.create(req.body)
+    User.create(req.body)
     .then((user) => {
         console.log('Created user: ' + user);
         res.statusCode = 200;
@@ -28,7 +28,7 @@ userRouter.route('/')
     .catch((err) => next(err));
 })
 .delete((req, res, next) => {
-    Lunch.remove({})
+    User.remove({})
     .then((users) => {
         console.log('<ADMIN> All users Deleted');
         res.statusCode = 200;
@@ -38,19 +38,19 @@ userRouter.route('/')
     .catch((err) => next(err));
 });
 
-lunchRouter.route('/:id')
+userRouter.route('/:id')
 .get((req, res, next) => {
-    Lunch.findById(req.params.id)
+    User.findById(req.params.id)
     .then((user) => {
         console.log('Gathered user with id: ' + req.params.id);
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
-        res.json(user);
+        res.json(user); 
     }, (err) => next(err))
     .catch((err) => next(err));
 })
 .put((req, res, next) => {
-    Lunch.findByIdAndUpdate(req.params.id, req.body, { new : true})
+    User.findByIdAndUpdate(req.params.id, req.body, { new : true})
     .then((user) => {
         console.log('Updated user ' + req.params.id + ' to ' + user);
         res.statusCode = 200;
@@ -60,7 +60,7 @@ lunchRouter.route('/:id')
     .catch((err) => next(err));
 })
 .delete((req, res, next) => {
-    Lunch.findByIdAndDelete(req.params.id)
+    User.findByIdAndDelete(req.params.id)
     .then((user) => {
         console.log('User ' + req.params.id + ' is now gone');
         res.statusCode = 200;
@@ -70,4 +70,4 @@ lunchRouter.route('/:id')
     .catch((err) => next(err));
 });
 
-module.exports = lunchRouter;
+module.exports = userRouter;
