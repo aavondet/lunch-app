@@ -28,3 +28,5 @@ var lunch = new Schema({
 },{
     collection : 'lunches'
 })
+
+module.exports = mongoose.model('Lunch', lunch);
