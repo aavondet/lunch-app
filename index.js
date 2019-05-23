@@ -49,4 +49,8 @@ app.use(express.static(__dirname+'/public'));
 app.use('/lunch', lunchRouter);
 app.use('/user', userRouter);
 
+app.get('/', (req, res, next) => {
+    res.sendFile('./public/index.html');
+});
+
 app.listen(config.PORT);
