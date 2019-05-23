@@ -9,6 +9,7 @@ const app = express();
 
 // Routers
 const lunchRouter = require('./app/routers/lunchRouter'); 
+const userRouter = require('./app/routers/userRouter');
 
 // Models
 const Lunches = require('./app/models/lunch');
@@ -27,5 +28,6 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname+'/public'));
 
 app.use('/lunch', lunchRouter);
+app.use('/user', userRouter);
 
 app.listen(config.PORT);
