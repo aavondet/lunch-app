@@ -1,4 +1,4 @@
 module.exports = {
-    URL : 'mongodb://localhost:',
+    DB : 'mongodb://localhost:27017',
     PORT : 8080
 }
