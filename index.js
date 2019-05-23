@@ -1,7 +1,10 @@
 // External Modules
 var express = require('express');
+// var session = require('express-session');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
+// var cookieParser = require('cookie-parser');
+// var mongoStore = require('connect-mongo')(express);
 const config = require('./app/config')
 const mongoose = require('mongoose');
 
@@ -27,6 +30,22 @@ app.use(bodyParser.json());
 
 app.use(express.static(__dirname+'/public'));
 
+// // Session Setup
+// app.use(express.cookieParser());
+// app.use(session({
+//     secret : '3.1415926535',
+//     store : new mongoStore({
+//         db : 'session',
+//         host : 'localhost',
+//         clear_interval : 60 * 60
+//     }),
+//     cookie : {
+//         httpOnly : false,
+//         maxAge : new Date(Date.now() + 60 * 60 * 1000)
+//     }
+// }));
+
+// Use Routers
 app.use('/lunch', lunchRouter);
 app.use('/user', userRouter);
 
