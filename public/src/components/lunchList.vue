@@ -15,6 +15,12 @@ export default {
             lunches : []
         }
     },
+    mounted() {
+        bus.$on('refreshList', () => {
+            console.log('The bus works!');
+            this.displayLunches();
+        });
+    },
     methods : {
         displayLunches(){
             var url = 'http://localhost:8080/lunch'
@@ -22,7 +28,6 @@ export default {
             .then((res) => {
                 this.lunches = res.data;
                 console.log(res.data);
-                console.log('I reached here');
             });
         },
         updateLunchTime(lunch){

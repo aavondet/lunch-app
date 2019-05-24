@@ -56,6 +56,7 @@ export default {
             this.description = ''
         },
         refreshList(){
+            console.log('please emit:(')
             bus.$emit('refreshList');
         }
     }
