@@ -1,7 +1,12 @@
 <template>
     <div>
-        <button @click="displayLunches()"></button>
-        <li class="list-group-item" v-for="lunch in lunches">{{lunch.title}}</li>
+        <li class="list-group-item" v-for="lunch in lunches">
+            Title: {{lunch.title}}
+            Created by: {{lunch.createdBy}}
+            Location: {{lunch.locatioin}}
+            Time: {{lunch.time}}
+            Description: {{lunch.description}}
+        </li>
     </div>
 </template>
 

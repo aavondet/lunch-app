@@ -1,12 +1,15 @@
 <template>
     <div>
         <button title="Create a Lunch" @click="toggle()" >Create a Lunch</button>
-        <div class="form-group" :class="{ forminvisible: !adding }">
+        <div class="fields" :class="{ forminvisible: !adding }">
             <input type=text v-model="title" placeholder="Title">
             <input type=text v-model="createdBy" placeholder="Your Name">
             <input type=text v-model="location" placeholder="Location">
             <input type=text v-model="time" placeholder="Time">
-            <button title="Create a Lunch" @click="addLunch();" >Submit</button>
+            <input type=text v-model="description" placeholder="Description">
+            <div id="submit">
+                <button title="Create a Lunch" @click="addLunch();" >Submit</button>
+            </div>
         </div>
     </div>
 </template>
@@ -67,4 +70,22 @@ export default {
 .forminvisible {
     visibility: hidden
 }
+.fields {
+    background-color: rgba(204, 255, 204, 0.3);
+    margin: 10px 15px 10px 15px;
+}
+input {
+    margin: 10px 15px 10px 15px;
+}
+button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 12px;
+    background-color: white;
+}
+button:hover {
+    background-color:rgba(204, 255, 204, 0.1);
+}
+
 </style>
