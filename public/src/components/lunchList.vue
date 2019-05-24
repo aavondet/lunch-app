@@ -7,6 +7,11 @@
             <b>Created by:</b> {{lunch.createdBy}} <br/>
             <b>Time:</b> {{lunch.time}} <br/>
             <b>Description:</b> {{lunch.description}} <br/>
+            <b>Guests:</b><p v-for="guest in guests">{{guest}} </p> 
+            <div>
+                <b>RSVP!</b>
+                <input type=text v-model="guest" default='your Name'>
+            </div>
         </li>
         <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     </div>
@@ -19,7 +24,8 @@ import bus from '../bus.js'
 export default {
     data() {
         return {
-            lunches : []
+            lunches : [],
+            guest : ''
         }
     },
     mounted() {
@@ -61,7 +67,10 @@ export default {
             bus.$on('refreshList', () => {
                 console.log('The bus works!');
                 this.displayLunches()
-        });
+        })
+        },
+        addGuest(guest) {
+            console.log('Add guest to guests list');
         }
     }
 }
