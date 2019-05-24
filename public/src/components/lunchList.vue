@@ -1,6 +1,7 @@
 <template>
     <div>
-        
+        <button @click="displayLunches()"></button>
+        <li class="list-group-item" v-for="lunch in lunches">{{lunch.title}}</li>
     </div>
 </template>
 
@@ -10,11 +11,9 @@ import bus from '../bus.js'
 
 export default {
     data() {
-        lunches : []
-    },
-    created : () => {
-        this.listenForEvents();
-        this.displayLunches();
+        return {
+            lunches : []
+        }
     },
     methods : {
         displayLunches(){
@@ -22,7 +21,9 @@ export default {
             axios.get(url)
             .then((res) => {
                 this.lunches = res.data;
-            })
+                console.log(res.data);
+                console.log('I reached here');
+            });
         },
         updateLunchTime(lunch){
             var url = 'http://localhost:8080/lunch/' + lunch._id
@@ -35,16 +36,16 @@ export default {
         deleteLunch(id){
             var url = 'http://localhost:8080/lunch/' + id
             axios.delete(url)
-            .then((lunch) => {
+            .then(function(lunch){ 
                 console.log(lunch);
                 this.displayLunches();
             })
             .catch((err) => console.log(err))
         },
         listenForEvents(){
-            bus.$on('refreshList', () => {
+            bus.$on('refreshList', function() {
                 this.displayLunches();
-            })
+            });
         }
     }
 }

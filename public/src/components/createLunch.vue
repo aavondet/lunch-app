@@ -1,7 +1,13 @@
 <template>
     <div>
-        <button title="Create a Lunch" @click="adding=true"></button>
-            HIHIIHIH
+        <button title="Create a Lunch" @click="toggle()" >Create a Lunch</button>
+        <div class="form-group" :class="{ forminvisible: !adding }">
+            <input type=text v-model="title" placeholder="Title">
+            <input type=text v-model="createdBy" placeholder="Your Name">
+            <input type=text v-model="location" placeholder="Location">
+            <input type=text v-model="time" placeholder="Time">
+            <button title="Create a Lunch" @click="function(){addLunch();refreshList();}" >Submit</button>
+        </div>
     </div>
 </template>
 
@@ -21,8 +27,11 @@ export default {
         }
     },
     methods : {
+        toggle(){
+            this.adding = !this.adding;
+        },
         addLunch(){
-            var url = 'http://localhost:8080/add'
+            var url = 'http://localhost:8080/lunch'
             var newLunch = {
                 title : this.title,
                 createdBy : this.createdBy,
@@ -30,21 +39,20 @@ export default {
                 time : this.time,
                 description : this.description
             };
-            axios.post(url, newLunch)
-            .then((lunch) => {
-                console.log(lunch.title + ' was successfully added!');
+            axios.post(url, newLunch, function(lunch) {
+                console.log(lunch.data.title + ' was successfully added!');
                 this.clearField();
                 this.refreshList();
-                this.adding = false;
+                this.toggle();
             })
             .catch((err) => console.log(err))
         },
         clearField(){
-            title = ''
-            createdby = ''
-            location = ''
-            time = ''
-            description = ''
+            this.title = ''
+            this.createdBy = ''
+            this.location = ''
+            this.time = ''
+            this.description = ''
         },
         refreshList(){
             bus.$emit('refreshList');
@@ -52,3 +60,9 @@ export default {
     }
 }
 </script>
+
+<style>
+.forminvisible {
+    visibility: hidden
+}
+</style>

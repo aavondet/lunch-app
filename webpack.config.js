@@ -6,16 +6,13 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 module.exports = {
   entry: './public/src/index.js',
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, './public/build')
+    path: path.resolve(__dirname, 'public'),
+    filename: 'bundle.js'
   },
   resolve: {
     alias: {
-      vue: '/Users/arnaud.avondet/Desktop/Study/lunch-app/vue.js'
+      vue: path.resolve(__dirname, './vue.js')
     }
-  },
-  output: {
-    filename: './public/build/bundle.js'
   },
   module: {
     rules: [

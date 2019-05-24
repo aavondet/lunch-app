@@ -1,15 +1,16 @@
 <template>
     <div id='app'>
         <div class='container'>
-            <h1>Helo</h1>
             <create-lunch></create-lunch>
+            <lunch-list></lunch-list>
         </div>
     </div>
 </template>
 <script>
 import createLunch from './createLunch.vue'
+import lunchList from './lunchList.vue'
 
 export default {
-    components : {createLunch}
+    components : {createLunch, lunchList}
 }
 </script>
