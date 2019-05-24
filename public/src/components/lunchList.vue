@@ -1,12 +1,13 @@
 <template>
     <div>
+        <h2>List of Posted Lunches<i class="em em-yum"></i></h2>
         <li class="list-group-item" v-for="lunch in lunches">
-            Title: {{lunch.title}}
-            Created by: {{lunch.createdBy}}
-            Location: {{lunch.locatioin}}
-            Time: {{lunch.time}}
-            Description: {{lunch.description}}
+            <h3>{{lunch.title}} @ {{lunch.location}}</h3> 
+            <b>Created by:</b> {{lunch.createdBy}} <br/>
+            <b>Time:</b> {{lunch.time}} <br/>
+            <b>Description:</b> {{lunch.description}} <br/>
         </li>
+        <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     </div>
 </template>
 
@@ -25,6 +26,9 @@ export default {
             console.log('The bus works!');
             this.displayLunches();
         });
+    },
+    created() {
+        this.displayLunches();
     },
     methods : {
         displayLunches(){
