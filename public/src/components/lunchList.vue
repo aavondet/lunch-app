@@ -1,6 +1,7 @@
 <template>
     <div>
-        <h2>List of Posted Lunches<i class="em em-yum"></i></h2>
+        <h2 v-if="lunches.length>0">List of Posted Lunches<i class="em em-yum"></i></h2>
+        <h2 v-else>No Posted Lunches<i class="em em-cry"></i></h2>
         <li class="list-group-item" v-for="lunch in lunches">
             <h3>{{lunch.title}} @ {{lunch.location}}</h3> 
             <b>Created by:</b> {{lunch.createdBy}} <br/>

@@ -1,19 +1,26 @@
 <template>
     <div>
-        <button title="Create a Lunch" @click="toggle()" >Create a Lunch</button>
-        <div class="fields" :class="{ forminvisible: !adding }">
-            <input type=text v-model="title" placeholder="Title">
-            <input type=text v-model="createdBy" placeholder="Your Name">
-            <input type=text v-model="location" placeholder="Location">
-            <input type=time v-model="time" placeholder="Time">
-            <input type=text v-model="description" placeholder="Description">
+        <button title="Create a Lunch" @click="toggle()"><h3 id='create'>Create a Lunch</h3></button>
+        <div class="fields" v-if="adding">
+            <div class="maininputs">
+                Title: <input type=text v-model="title">
+                Your Name: <input type=text v-model="createdBy">
+                Location: <input type=text v-model="location">
+                Time: <input type=time v-model="time">
+            </div>
+            <div class="desc">
+                Description: <input type=text id="descbox" v-model="description">
+            </div>
             <div id="submit">
                 <button title="Create a Lunch" @click="addLunch();" >Submit</button>
+                <button title="Close" @click="toggle();" >Close</button>
+            </div>
+            <div class="warning" v-if="!filled">
+                <h2>Please fill every field!<i class="em em-angry"></i></h2>
             </div>
         </div>
-        <div class="warning" :class="{ forminvisible: filled }">
-            <h2>Please fill every field!</h2>
-        </div>
+        
+        <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     </div>
 </template>
 
@@ -36,6 +43,7 @@ export default {
     methods : {
         toggle(){
             this.adding = !this.adding;
+            this.filled = true;
         },
         checkFilled(){
             return this.title != '' &&
@@ -89,6 +97,7 @@ export default {
 .fields {
     background-color: rgba(204, 255, 204, 0.3);
     margin: 10px 15px 10px 15px;
+    border-radius: 12px;
 }
 input {
     margin: 10px 15px 10px 15px;
@@ -106,5 +115,31 @@ button:hover {
 .warning {
     color:  red;
     text-align: center;
+}
+.desc {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+#descbox {
+    width: 70%;
+    height: 75px;
+}
+.maininputs {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+#create::after {
+    content : Now;
+    opacity: 0;
+    transition: 0.5;
+}
+#create {
+    margin: 20px;
+}
+button:hover #create::after {
+    content : Now;
+    opacity: 1;
 }
 </style>
