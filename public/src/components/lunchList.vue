@@ -43,9 +43,10 @@ export default {
             .catch((err) => console.log(err))
         },
         listenForEvents(){
-            bus.$on('refreshList', function() {
-                this.displayLunches();
-            });
+            bus.$on('refreshList', () => {
+                console.log('The bus works!');
+                this.displayLunches()
+        });
         }
     }
 }

@@ -6,7 +6,7 @@
             <input type=text v-model="createdBy" placeholder="Your Name">
             <input type=text v-model="location" placeholder="Location">
             <input type=text v-model="time" placeholder="Time">
-            <button title="Create a Lunch" @click="function(){addLunch();refreshList();}" >Submit</button>
+            <button title="Create a Lunch" @click="addLunch();" >Submit</button>
         </div>
     </div>
 </template>
@@ -39,7 +39,8 @@ export default {
                 time : this.time,
                 description : this.description
             };
-            axios.post(url, newLunch, function(lunch) {
+            axios.post(url, newLunch)
+            .then((lunch) => {
                 console.log(lunch.data.title + ' was successfully added!');
                 this.clearField();
                 this.refreshList();
