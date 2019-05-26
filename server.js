@@ -12,6 +12,8 @@ const config = require('./app/config');
 const mongoose = require('mongoose');
 
 const app = express();
+// favicon
+app.use(favicon(path.join(__dirname,'public','favicon.ico')));
 
 // Routers
 const lunchRouter = require('./app/routers/lunchRouter'); 
@@ -38,9 +40,8 @@ mongoose.connect('mongodb+srv://' + process.env.DB_USER + ':'
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
+// Set public as static
 app.use(express.static(__dirname+'/public'));
-
-app.use(favicon(path.join(__dirname,'public','favicon.ico')));
 
 // // Session Setup
 // app.use(express.cookieParser());
