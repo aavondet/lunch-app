@@ -7,7 +7,7 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 // var cookieParser = require('cookie-parser');
 // var mongoStore = require('connect-mongo')(express);
-const localConfig = require('./app/config');
+const localConfig = require('./app/local.config.js');
 const mongoose = require('mongoose');
 
 const app = express();
