@@ -1,6 +1,5 @@
 var webpack = require('webpack');
 var path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
@@ -22,9 +21,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
-    }),
     new VueLoaderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
   ]
