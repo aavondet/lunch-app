@@ -1,5 +1,7 @@
 // External Modules
 var express = require('express');
+var favicon = require('serve-favicon');
+var path = require('path');
 // var session = require('express-session');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
@@ -37,6 +39,8 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 
 app.use(express.static(__dirname+'/public'));
+
+app.use(favicon(path.join(__dirname,'public','favicon.ico')));
 
 // // Session Setup
 // app.use(express.cookieParser());
