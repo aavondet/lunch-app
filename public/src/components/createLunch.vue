@@ -58,7 +58,7 @@ export default {
                 return;
             }
             this.filled = true;
-            var url = process.env.HOST + '/lunch'
+            var url = '/lunch'
             var newLunch = {
                 title : this.title,
                 createdBy : this.createdBy,
