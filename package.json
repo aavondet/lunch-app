@@ -4,7 +4,7 @@
   "description": "FInd others to go to lunch with",
   "main": "index.js",
   "scripts": {
-    "test": "node server.js",
+    "start": "node server.js",
     "build": "webpack --mode development"
   },
   "repository": {
