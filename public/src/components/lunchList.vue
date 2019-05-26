@@ -43,7 +43,7 @@ export default {
     },
     methods : {
         displayLunches(){
-            var url = process.env.HOST + '/lunch'
+            var url = process.env.HOST + 'lunch'
             axios.get(url)
             .then((res) => {
                 this.lunches = res.data;
