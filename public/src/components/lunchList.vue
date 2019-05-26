@@ -97,6 +97,7 @@ export default {
         deleteAll() {
             if (ADMIN_PASS != this.pass) {
                 this.pass = '';
+                console.log('Wrong passcode')
                 return;
             }
             axios.delete('lunch/')
