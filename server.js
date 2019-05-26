@@ -66,4 +66,4 @@ app.get('/', (req, res, next) => {
 });
 
 app.listen(PORT);
-console.log(PORT, process.env.HOST);
+console.log(PORT);
