@@ -19,14 +19,14 @@ const userRouter = require('./app/routers/userRouter');
 const Lunches = require('./app/models/lunch');
 
 // PORT
-const PORT = process.env.PORT || localConfig.PORT;
+const PORT = process.env.PORT || 8080;
 
 // Connect to mongoDB
 // If using local server: localConfig.DB
 // If using MongoDB Atlas: 
 // mongodb+srv://<username>:<password>@cluster0-c14lf.gcp.mongodb.net/test?retryWrites=true
-mongoose.connect('mongodb+srv://' + config.username + ':' 
-    + config.password + '@cluster0-c14lf.gcp.mongodb.net/test?retryWrites=true')
+mongoose.connect('mongodb+srv://' + process.env.DB_USER + ':' 
+    + process.env.DB_PASS + '@cluster0-c14lf.gcp.mongodb.net/test?retryWrites=true')
 .then(() => {
     console.log('Connected to Server');
 })
@@ -62,3 +62,4 @@ app.get('/', (req, res, next) => {
 });
 
 app.listen(PORT);
+console.log(PORT);
