@@ -7,10 +7,15 @@
             <b>Created by:</b> {{lunch.createdBy}} <br/>
             <b>Time:</b> {{lunch.time}} <br/>
             <b>Description:</b> {{lunch.description}} <br/>
-            <b>Guests:</b><p v-for="guest in guests">{{guest}} </p> 
+            <b>Guests:</b>
+            <ul>
+                |
+                <li v-for="guest in lunch.guests">| <i>{{guest}}</i> |</li>
+                |
+            </ul>
             <div>
-                <b>RSVP!</b>
-                <input type=text v-model="guest" default='your Name'>
+                <input type=text v-model="lunch.guest" @keyup.enter="addGuest(lunch, lunch.guest)" placeholder='Your Name'>
+                <button @click="addGuest(lunch, lunch.guest)">RSVP!</button>
             </div>
         </li>
         <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
@@ -24,8 +29,7 @@ import bus from '../bus.js'
 export default {
     data() {
         return {
-            lunches : [],
-            guest : ''
+            lunches : []
         }
     },
     mounted() {
@@ -57,7 +61,7 @@ export default {
         deleteLunch(id){
             var url = 'http://localhost:8080/lunch/' + id
             axios.delete(url)
-            .then(function(lunch){ 
+            .then(function(lunch) { 
                 console.log(lunch);
                 this.displayLunches();
             })
@@ -69,9 +73,37 @@ export default {
                 this.displayLunches()
         })
         },
-        addGuest(guest) {
-            console.log('Add guest to guests list');
+        addGuest(lunch, guest) {
+            if (guest == '') return;
+            var url = 'http://localhost:8080/lunch/' + lunch._id
+            var newGuests = lunch.guests.push(guest)
+            lunch.guest = ''
+            axios.put(url, lunch)
+            .then(function(lunch) {
+                console.log('Updated lunch to ' + lunch);
+                this.displayLunches()
+            })
+            .catch((err) => console.log(err))
         }
     }
 }
 </script>
+
+<style>
+    button {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 12px;
+        background-color: white;
+    }
+    button:hover {
+        background-color:rgba(204, 255, 204, 0.1);
+    }
+    ul {
+        display: flex;
+    }
+    li {
+        display: inline;
+    }
+</style>

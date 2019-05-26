@@ -47,10 +47,10 @@ export default {
         },
         checkFilled(){
             return this.title != '' &&
-                   this.createdBy != '' &&
-                   this.location != '' &&
-                   this.time != '' &&
-                   this.description != '';
+                this.createdBy != '' &&
+                this.location != '' &&
+                this.time != '' &&
+                this.description != '';
         },
         addLunch(){
             if (!this.checkFilled()) {
@@ -129,17 +129,5 @@ button:hover {
     display: block;
     margin-left: auto;
     margin-right: auto;
-}
-#create::after {
-    content : Now;
-    opacity: 0;
-    transition: 0.5;
-}
-#create {
-    margin: 20px;
-}
-button:hover #create::after {
-    content : Now;
-    opacity: 1;
 }
 </style>

@@ -22,6 +22,9 @@ var lunch = new Schema({
     description: {
         type : String
     },
+    guest : {
+        type : String
+    },
     guests : [{ 
         type : String
     }], 
