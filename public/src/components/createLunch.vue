@@ -58,7 +58,7 @@ export default {
                 return;
             }
             this.filled = true;
-            var url = 'http://localhost:8080/lunch'
+            var url = process.env.HOST + '/lunch'
             var newLunch = {
                 title : this.title,
                 createdBy : this.createdBy,

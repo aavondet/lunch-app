@@ -43,7 +43,7 @@ export default {
     },
     methods : {
         displayLunches(){
-            var url = 'http://localhost:8080/lunch'
+            var url = process.env.HOST + '/lunch'
             axios.get(url)
             .then((res) => {
                 this.lunches = res.data;
@@ -51,7 +51,7 @@ export default {
             });
         },
         updateLunchTime(lunch){
-            var url = 'http://localhost:8080/lunch/' + lunch._id
+            var url = process.env.HOST + 'lunch/' + lunch._id
             axios.post(url, lunch)
             .then((lunch) => {
                 console.log(lunch);
@@ -59,7 +59,7 @@ export default {
             .catch((err) => console.log(err))
         },
         deleteLunch(id){
-            var url = 'http://localhost:8080/lunch/' + id
+            var url = process.env.HOST + 'lunch/' + id
             axios.delete(url)
             .then(function(lunch) { 
                 console.log(lunch);
@@ -75,7 +75,7 @@ export default {
         },
         addGuest(lunch, guest) {
             if (guest == '') return;
-            var url = 'http://localhost:8080/lunch/' + lunch._id
+            var url = process.env.HOST + 'lunch/' + lunch._id
             var newGuests = lunch.guests.push(guest)
             lunch.guest = ''
             axios.put(url, lunch)
