@@ -5,7 +5,8 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 // var cookieParser = require('cookie-parser');
 // var mongoStore = require('connect-mongo')(express);
-const config = require('./app/config')
+const localConfig = require('./app/config');
+const config = require('./app/config');
 const mongoose = require('mongoose');
 
 const app = express();
@@ -17,8 +18,15 @@ const userRouter = require('./app/routers/userRouter');
 // Models
 const Lunches = require('./app/models/lunch');
 
+// PORT
+const PORT = process.env.PORT || localConfig.PORT;
+
 // Connect to mongoDB
-mongoose.connect(config.DB)
+// If using local server: localConfig.DB
+// If using MongoDB Atlas: 
+// mongodb+srv://<username>:<password>@cluster0-c14lf.gcp.mongodb.net/test?retryWrites=true
+mongoose.connect('mongodb+srv://' + config.username + ':' 
+    + config.password + '@cluster0-c14lf.gcp.mongodb.net/test?retryWrites=true')
 .then(() => {
     console.log('Connected to Server');
 })
@@ -53,4 +61,4 @@ app.get('/', (req, res, next) => {
     res.sendFile('./public/index.html');
 });
 
-app.listen(config.PORT);
+app.listen(PORT);
