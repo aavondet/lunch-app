@@ -18,6 +18,10 @@
                 <button @click="addGuest(lunch, lunch.guest)">RSVP!</button>
             </div>
         </li>
+        <div class="adminDelete" v-if="lunches.length>0">
+            <input type="text" v-model="pass" @keyup.enter="deleteAll()" placeholder="Admin Password">
+            <button @click="deleteAll()"><b>DELETE ALL EVENTS</b></button>
+        </div>
         <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     </div>
 </template>
@@ -25,11 +29,15 @@
 <script>
 import axios from 'axios'
 import bus from '../bus.js'
+// !!ONLY FOR LOCAL!!
+var config = require('../../../app/config.js');
+const ADMIN_PASS = process.env.ADMINPASS || config.adminPass;
 
 export default {
     data() {
         return {
-            lunches : []
+            lunches : [],
+            pass : ''
         }
     },
     mounted() {
@@ -84,6 +92,18 @@ export default {
                 this.displayLunches()
             })
             .catch((err) => console.log(err))
+        },
+        deleteAll() {
+            if (ADMIN_PASS != this.pass) {
+                this.pass = '';
+                return;
+            }
+            axios.delete('lunch/')
+            .then(() => {
+                console.log('Deleted all lunches');
+                this.displayLunches();
+            })
+            .catch((err) => console.log(err))
         }
     }
 }
@@ -105,6 +125,10 @@ export default {
         display: inline;
     }
     .RSVP {
+        display: inline;
+    }
+    .adminDelete {
+        margin-top: 10px;
         display: inline;
     }
 </style>

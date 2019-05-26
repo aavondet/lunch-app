@@ -1,6 +1,8 @@
 <template>
     <div>
-        <button title="Create a Lunch" @click="toggle()"><h3 id='create'>Create a Lunch</h3></button>
+        <div class="createLunch">
+            <button @click="toggle()"><h3 id='create'>Create a Lunch</h3></button>
+        </div>
         <div class="fields" v-if="adding">
             <div class="maininputs">
                 Title: <input type=text v-model="title">
@@ -91,9 +93,6 @@ export default {
 </script>
 
 <style>
-.forminvisible {
-    visibility: hidden
-}
 .fields {
     background-color: rgba(204, 255, 204, 0.3);
     margin: 10px 15px 10px 15px;
@@ -129,5 +128,13 @@ button:hover {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+#create {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.createLunch {
+    display: flex;
 }
 </style>
