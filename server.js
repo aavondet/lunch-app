@@ -23,8 +23,10 @@ const userRouter = require('./app/routers/userRouter');
 // PORT
 const PORT = process.env.PORT || 8080;
 
-var db_user = process.env.DB_USER || config.db_user;
-var db_pass = process.env.DB_PASS || config.db_pass;
+// local: config.db_user
+var db_user = process.env.DB_USER;
+// local: config.db_user
+var db_pass = process.env.DB_PASS;
 
 // Connect to mongoDB
 // If using local server: localConfig.DB

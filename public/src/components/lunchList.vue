@@ -31,8 +31,8 @@ import axios from 'axios'
 import bus from '../bus.js'
 // !!ONLY FOR LOCAL!!
 //var config = require('../../../app/config.js');
-
-const ADMIN_PASS = process.env.ADMINPASS || config.adminPass;
+// config.adminPass
+const ADMIN_PASS = process.env.ADMINPASS;
 
 export default {
     data() {
