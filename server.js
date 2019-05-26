@@ -1,3 +1,6 @@
+// !!ONLY FOR LOCAL!!
+// var config = require('./app/config.js');
+
 // External Modules
 var express = require('express');
 var favicon = require('serve-favicon');
@@ -18,18 +21,18 @@ app.use(favicon(path.join(__dirname,'public','favicon.ico')));
 const lunchRouter = require('./app/routers/lunchRouter'); 
 const userRouter = require('./app/routers/userRouter');
 
-// Models
-const Lunches = require('./app/models/lunch');
-
 // PORT
 const PORT = process.env.PORT || 8080;
+
+var db_user = process.env.DB_USER || config.db_user;
+var db_pass = process.env.DB_PASS || config.db_pass;
 
 // Connect to mongoDB
 // If using local server: localConfig.DB
 // If using MongoDB Atlas: 
 // mongodb+srv://<username>:<password>@cluster0-c14lf.gcp.mongodb.net/test?retryWrites=true
-mongoose.connect('mongodb+srv://' + process.env.DB_USER + ':' 
-    + process.env.DB_PASS + '@cluster0-c14lf.gcp.mongodb.net/test?retryWrites=true')
+mongoose.connect('mongodb+srv://' + db_user + ':' 
+    + db_pass + '@cluster0-c14lf.gcp.mongodb.net/test?retryWrites=true')
 .then(() => {
     console.log('Connected to Server');
 })

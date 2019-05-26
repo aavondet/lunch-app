@@ -13,7 +13,7 @@
                 <li v-for="guest in lunch.guests">| <i>{{guest}}</i> |</li>
                 |
             </ul>
-            <div>
+            <div class="RSVP">
                 <input type=text v-model="lunch.guest" @keyup.enter="addGuest(lunch, lunch.guest)" placeholder='Your Name'>
                 <button @click="addGuest(lunch, lunch.guest)">RSVP!</button>
             </div>
@@ -91,9 +91,7 @@ export default {
 
 <style>
     button {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
+        display: inline;
         border-radius: 12px;
         background-color: white;
     }
@@ -104,6 +102,9 @@ export default {
         display: flex;
     }
     li {
+        display: inline;
+    }
+    .RSVP {
         display: inline;
     }
 </style>
