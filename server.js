@@ -1,5 +1,4 @@
-// !!ONLY FOR LOCAL!!
-var config = require('./app/config.js');
+//var config = require('./app/config.js');
 
 // External Modules
 var express = require('express');
