@@ -32,7 +32,7 @@ import bus from '../bus.js'
 // !!ONLY FOR LOCAL!!
 //var config = require('../../../app/config.js');
 // config.adminPass
-const ADMIN_PASS = process.env.ADMINPASS;
+// const ADMIN_PASS = process.env.ADMINPASS;
 
 export default {
     data() {
@@ -95,7 +95,7 @@ export default {
             .catch((err) => console.log(err))
         },
         deleteAll() {
-            if (ADMIN_PASS != this.pass) {
+            if (process.env.ADMINPASS != this.pass) {
                 this.pass = '';
                 console.log('Wrong passcode')
                 return;
